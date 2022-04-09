@@ -14,3 +14,11 @@ sapr %>%
     title='SANEPAR',
     subtitle = 'Preços ajustados - 2020-01-01 - '
   )
+
+sapr_pct <- sapr %>%
+  arrange(date) %>%
+  mutate(ret = (adjusted - lag(adjusted)) / lag(adjusted)) %>%
+  drop_na(ret) %>%
+  select(symbol, date, ret)
+
+  

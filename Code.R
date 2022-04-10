@@ -30,9 +30,12 @@ sapr_pct <- sapr %>%
 ### Plotando gráfico dos retornos
 sapr_pct %>%
   ggplot(aes(x=ret*100))+
-  geom_histogram(bins = 80)+
+  geom_histogram(bins = 80, colour='black')+
   labs(
     x=NULL,
-    y=NULL)
+    y=NULL)+
+  theme_hc()+
+  scale_colour_hc()
+
 
   

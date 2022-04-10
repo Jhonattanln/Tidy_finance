@@ -2,6 +2,7 @@
 library(tidyverse)
 library(tidyquant)
 library(ggplot2)
+library(ggthemes)
 
 ### Importando dados
 sapr <- tidyquant::tq_get('SAPR4.SA', get = 'stock.prices', from = '2020-01-01', to = Sys.Date()) ## dados referente a sanepar
@@ -9,13 +10,15 @@ sapr <- tidyquant::tq_get('SAPR4.SA', get = 'stock.prices', from = '2020-01-01',
 ### Criando gráfico de preços históricos
 sapr %>%
   ggplot(aes(x=date, y=adjusted))+
-  geom_line()+
+  geom_line(size=0.8)+
   labs(
     x='Data',
-    y='SAPR3',
+    y=NULL,
     title='SANEPAR',
     subtitle = 'Preços ajustados - 2020-01-01 - Hoje'
-  )
+  )+
+  theme_hc()+
+  scale_colour_hc()
 
 ### Criando séries de retornos
 sapr_pct <- sapr %>%

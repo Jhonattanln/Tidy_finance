@@ -30,12 +30,25 @@ sapr_pct <- sapr %>%
 ### Plotando gráfico dos retornos
 sapr_pct %>%
   ggplot(aes(x=ret*100))+
-  geom_histogram(bins = 80, colour='black')+
+  geom_histogram(bins = 90, colour='black')+
   labs(
     x=NULL,
     y=NULL)+
   theme_hc()+
   scale_colour_hc()
 
-
+### Estatisticas
+sapr_pct %>%
+  group_by(year = year(date)) %>%
+  mutate(ret = ret*100) %>%
+  summarize(across(
+    ret,
+    list(
+      Média = mean,
+      Desvio_padrão = sd,
+      Mínima = min,
+      Máxima = max
+      ),
+    .names = '{.fn}'
+    ))
   

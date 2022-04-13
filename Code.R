@@ -33,9 +33,8 @@ sapr_pct %>%
   geom_histogram(bins = 90, colour='black')+
   labs(
     x=NULL,
-    y=NULL)+
-  theme_hc()+
-  scale_colour_hc()
+    y=NULL)
+
 
 ### Estatisticas
 sapr_pct %>%
@@ -50,4 +49,6 @@ sapr_pct %>%
       Máxima = max
       ),
     .names = '{.fn}'
-    ))
+    ))+
+  theme_hc()+
+  scale_colour_hc()
